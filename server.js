@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const mongoose = require('mongoose');
-
+require('dotenv').config();
 const config = require('./config/database');
 
 // Use Node's default promise instead of Mongoose's promise library
