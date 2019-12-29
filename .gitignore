@@ -1,5 +1,6 @@
 node_modules
 package-lock.json
 .env
+.idea
 frontend/node_modules
 frontend/package-lock.json
