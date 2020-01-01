@@ -1,7 +1,9 @@
 import React from 'react'
 
+import { PlayerContent } from '@features/player'
+
 const CreatePlayerPage = () => {
-    return <div>Page for create player</div>
+    return <PlayerContent />
 }
 
 export { CreatePlayerPage }
