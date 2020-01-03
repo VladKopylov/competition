@@ -26,6 +26,8 @@ module.exports = {
             '@features': path.resolve(resolveApp("src"), 'features'),
             '@ui': path.resolve(resolveApp("src"), 'shared-ui'),
             '@pages': path.resolve(resolveApp("src"), 'pages'),
+            '@api': path.resolve(resolveApp("src"), 'api'),
+            '@hooks': path.resolve(resolveApp("src"), 'hooks'),
         },
         extensions: ['*', '.js', '.jsx'],
     },
