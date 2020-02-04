@@ -30,5 +30,7 @@ export const useForm = (initialValue, submitCallback, validateCallaback) => {
         if (!R.isEmpty(errors)) validate()
     }
 
+    console.log('inputs', inputs)
+
     return { handleSubmit, handleInputChange, handleBlur, inputs, errors }
 }

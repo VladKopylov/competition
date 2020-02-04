@@ -1,58 +1,50 @@
 import React from 'react'
+import { useForm } from 'react-hook-form'
 import styled from 'styled-components'
 
 import { playerApi } from '@api/player'
-import { useForm } from '@hooks/useForm'
 import { playerValidation } from '@features/player/utils/'
 import { Field, Input, Button, Card, Title } from '@ui'
 
 const CreatePlayerForm = () => {
-    const initialValues = { firstName: '', lastName: '' }
+    const { register, handleSubmit, errors } = useForm()
 
-    const submitCallback = () => {
-        const { firstName, lastName } = inputs
-        playerApi.createPlayer({ firstName, lastName })
+    const onSubmit = data => {
+        console.log(data)
     }
 
-    const { inputs, handleInputChange, handleSubmit, handleBlur, errors } = useForm(
-        initialValues,
-        submitCallback,
-        playerValidation
-    )
-
+    const { firstNameValidation, lastNameValidation } = playerValidation()
     return (
         <Content>
             <Card>
                 <Title>New player</Title>
-                <Form onSubmit={handleSubmit}>
+                <Form onSubmit={handleSubmit(onSubmit)}>
                     <Col>
                         <Field
                             label="First name"
                             component={
                                 <Input
                                     name="firstName"
-                                    value={inputs.firstName}
-                                    onChange={handleInputChange}
-                                    onBlur={handleBlur}
-                                    borderColor={errors.firstName && '#dd3030'}
-                                    autoComplete="off"
+                                    ref={register(firstNameValidation)}
+                                    styling={{
+                                        borderColor: errors.firstName && '#dd3030',
+                                    }}
                                 />
                             }
-                            error={errors.firstName}
+                            error={errors}
                         />
                         <Field
                             label="Last name"
                             component={
                                 <Input
                                     name="lastName"
-                                    value={inputs.lastName}
-                                    onChange={handleInputChange}
-                                    onBlur={handleBlur}
-                                    borderColor={errors.lastName && '#dd3030'}
-                                    autoComplete="off"
+                                    ref={register(lastNameValidation)}
+                                    styling={{
+                                        borderColor: errors.firstName && '#dd3030',
+                                    }}
                                 />
                             }
-                            error={errors.lastName}
+                            error={errors}
                         />
                     </Col>
                     <Col align="flex-end">

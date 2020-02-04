@@ -2,11 +2,12 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Field = ({ label, component, error }) => {
+    const { name } = component.props
     return (
         <FieldContainer>
             {label && <Label>{label}</Label>}
             {component}
-            {error && <Error>{error}</Error>}
+            {error[name] && <Error>{error[name]?.message}</Error>}
         </FieldContainer>
     )
 }

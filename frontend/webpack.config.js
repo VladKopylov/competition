@@ -1,9 +1,9 @@
-const fs = require("fs")
-const path = require("path")
+const fs = require('fs')
+const path = require('path')
 const webpack = require('webpack')
 
 const appDirectory = fs.realpathSync(process.cwd())
-const resolveApp = (relativePath) => path.resolve(appDirectory, relativePath)
+const resolveApp = relativePath => path.resolve(appDirectory, relativePath)
 
 module.exports = {
     entry: ['react-hot-loader/patch', './src/index.js'],
@@ -19,15 +19,19 @@ module.exports = {
                 exclude: /node_modules/,
                 use: ['babel-loader', 'eslint-loader'],
             },
+            {
+                test: /\.css$/i,
+                use: ['style-loader', 'css-loader']
+            },
         ],
     },
     resolve: {
         alias: {
-            '@features': path.resolve(resolveApp("src"), 'features'),
-            '@ui': path.resolve(resolveApp("src"), 'shared-ui'),
-            '@pages': path.resolve(resolveApp("src"), 'pages'),
-            '@api': path.resolve(resolveApp("src"), 'api'),
-            '@hooks': path.resolve(resolveApp("src"), 'hooks'),
+            '@features': path.resolve(resolveApp('src'), 'features'),
+            '@ui': path.resolve(resolveApp('src'), 'shared-ui'),
+            '@pages': path.resolve(resolveApp('src'), 'pages'),
+            '@api': path.resolve(resolveApp('src'), 'api'),
+            '@hooks': path.resolve(resolveApp('src'), 'hooks'),
         },
         extensions: ['*', '.js', '.jsx'],
     },
